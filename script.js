@@ -4,13 +4,13 @@ const gameOver = new Audio('sounds/gameover.mp3')
 let turn = 'X'
 let isGameOver = false;
 //funtion to change turn
-function changeTurn(){
+function changeTurn() {
 
- if (turn==='X'){
+  if (turn === 'X') {
     turn = 'O'
     document.querySelector('.info').innerText = 'Turn for O'
   }
-  else{
+  else {
     turn = 'X'
     document.querySelector('.info').innerText = 'Turn for X'
   }
@@ -21,14 +21,14 @@ function changeTurn(){
 function checkWin() {
   let boxTexts = document.getElementsByClassName('box-text');
   let win = [
-    [0, 1, 2,-1,5,180],
-    [3, 4, 5, -1,15,180],
-    [6, 7, 8,-1,25,180],
-    [0, 3, 6,-13,15,90],
-    [1, 4, 7,-2.5, 15, 90],
-    [2, 5, 8,7.5,15,90],
-    [0, 4, 8,6,22,45],
-    [2, 4, 6,5,5,130]
+    [0, 1, 2, -1, 5, 180],
+    [3, 4, 5, -1, 15, 180],
+    [6, 7, 8, -1, 25, 180],
+    [0, 3, 6, -13, 15, 90],
+    [1, 4, 7, -2.5, 15, 90],
+    [2, 5, 8, 7.5, 15, 90],
+    [0, 4, 8, 6, 22, 45],
+    [2, 4, 6, 5, 5, 130]
   ];
 
   win.forEach(value => {
@@ -42,7 +42,7 @@ function checkWin() {
       bgMusic.play();
       document.querySelector('.image-container').getElementsByTagName('img')[0].style.width = '100px'
       document.querySelector('.line').style.transform = `translate(${value[3]}vw, ${value[4]}vw) rotate(${value[5]}deg)`
-      document.querySelector('.line').style.display= 'block'
+      document.querySelector('.line').style.display = 'block'
 
     }
   });
@@ -52,7 +52,7 @@ let boxes = document.getElementsByClassName('box');
 Array.from(boxes).forEach(element => {
   let boxText = element.querySelector('.box-text');
   element.addEventListener('click', () => {
-    
+
     if (!isGameOver && boxText.innerText === '') { // Check if the game is not over and box is empty
       boxText.innerText = turn;
       changeTurn();
@@ -64,16 +64,16 @@ Array.from(boxes).forEach(element => {
 
 //adding lsitener to reset button
 
-resetBtn.addEventListener('click' ,()=>{
+resetBtn.addEventListener('click', () => {
   let boxText = document.querySelectorAll('.box-text');
-  Array.from(boxText).forEach((element)=>{
+  Array.from(boxText).forEach((element) => {
     element.innerText = ''
   })
-  document.querySelector('.image-container').getElementsByTagName('img')[0].style.width='0px';
+  document.querySelector('.image-container').getElementsByTagName('img')[0].style.width = '0px';
   isGameOver = false;
-  turn= 'X'
+  turn = 'X'
   document.querySelector('.info').innerText = 'Turn For X';
-  document.querySelector('.line').style.display= 'none';
+  document.querySelector('.line').style.display = 'none';
   bgMusic.pause();
   setRandomVideo()
 
